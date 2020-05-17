@@ -1,0 +1,5 @@
+dist/
+logs/*
+data-source/*
+node_modules
+.idea/

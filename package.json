@@ -1,0 +1,21 @@
+{
+  "name": "data-processor",
+  "version": "1.0.0",
+  "description": "A data processing tool for dealing with CSVs, and the like.",
+  "main": "index.js",
+  "dependencies": {
+    "@types/prompts": "^2.0.8",
+    "csv-parser": "^2.3.2",
+    "jaro-winkler": "^0.2.8",
+    "prompts": "^2.3.2",
+    "rxjs": "^6.5.5",
+    "typescript": "^3.9.2",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

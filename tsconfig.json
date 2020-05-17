@@ -1,0 +1,52 @@
+{
+  "experimentalDecorators": true,
+  "emitDecoratorMetadata": true,
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "alwaysStrict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "strictNullChecks": false,
+    "baseUrl": ".",
+    "rootDir": "src/",
+    "outDir": "dist",
+    "paths": {
+      "@models/*": ["src/database/models/*"],
+      "@database": ["src/database/database.ts"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@design/*": ["src/design/*"],
+      "@utils/*": ["src/util/*"],
+      "@log/*": ["src/log/*"]
+    },
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "node_modules/"
+  ]
+}
