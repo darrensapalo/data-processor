@@ -1,7 +1,7 @@
-import { loadCsvFile } from './loaders/load-csv';
+import { loadCsvFile } from '../../loaders/load-csv';
 import { zip } from 'rxjs';
 import { tap, toArray, map } from 'rxjs/operators';
-import { log } from './logger';
+import { createLogger } from '../../utilities/logger';
 
 const tableA = [];
 const tableB = [];
@@ -28,7 +28,7 @@ const one = loadCsvFile('registrant_ids_of_access_pass_SMALLER_SET.csv', {
         toArray()
     );
 
-const logger = log("registrants", 'warn');
+const logger = createLogger("registrants", 'warn');
 
 zip(one, two).subscribe({
   complete:  () => {

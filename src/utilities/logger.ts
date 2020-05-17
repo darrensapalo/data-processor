@@ -1,7 +1,14 @@
 import winston, {format} from 'winston';
+import path from 'path';
 
-export const log = (filename: string, minimumLogLevel: string = 'info') => {
-  let log = winston.createLogger({
+/**
+ * Creates a new logger that creates a log file at the `logs` folder with the
+ * specified file name.
+ * @param filename
+ * @param minimumLogLevel
+ */
+export function createLogger(filename: string, minimumLogLevel: string = 'info') {
+  const log = winston.createLogger({
     level: 'info',
     format: format.combine(
       winston.format.json(),
@@ -14,7 +21,7 @@ export const log = (filename: string, minimumLogLevel: string = 'info') => {
       // - Write all logs error (and below) to `error.log`.
       //
       new winston.transports.File({
-        filename: filename,
+        filename: path.resolve('logs', filename),
         level: minimumLogLevel
       })
     ]

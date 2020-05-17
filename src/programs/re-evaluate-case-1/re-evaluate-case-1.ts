@@ -1,47 +1,19 @@
-import {loadCsvFile} from './loaders/load-csv';
+import {loadCsvFile} from '../../loaders/load-csv';
 import {
-  toArray,
-  reduce,
   mergeMap,
   map,
-  take,
-  filter,
-  skip, concatMap
+  concatMap
 } from 'rxjs/operators';
-import {defer, from, Observable, of} from 'rxjs';
-import {log} from "./logger";
-import { prompts } from 'prompts';
+import {from, Observable} from 'rxjs';
+import {createLogger} from "../../utilities/logger";
 import distance from 'jaro-winkler';
-import fs from 'fs';
-import {collect} from "./utilities/collector";
-import {apply2DMap} from "./utilities/2d-map";
-
-interface CaseOneEntry {
-  id: string;
-  reference_id: string;
-  registrant_id: string;
-  name: string;
-}
-
-interface CaseOneSet {
-  [key: string]: CaseOneEntry[];
-}
-
-interface InvestigatedCaseOneSet {
-  messages: string[];
-  reference_id: string;
-  set: CaseOneEntry[];
-}
-
-enum InvestigationResult {
-  CaseOne = "Case 1 - used by people with different names",
-  CaseTwo = "Case 2 -  used by people with the same name"
-}
+import {collect} from "../../utilities/collector";
+import {apply2DMap} from "../../utilities/2d-map";
+import { InvestigatedCaseOneSet, CaseOneSet, InvestigationResult } from './interfaces';
 
 
-let case1Entries, case2Entries;
-case1Entries = log("case-1.entries.log", 'info');
-case2Entries = log("case-2.entries.log", 'info');
+const case1EntriesLogger = createLogger("case-1.entries.log", 'info');
+const case2EntriesLogger = createLogger("case-2.entries.log", 'info');
 
 const caseOneEntrySet = loadCsvFile('case_1_deletions.csv', {
   headers: ["id", "reference_id", "registrant_id", "name"]
@@ -129,10 +101,10 @@ function investigate(container: InvestigatedCaseOneSet, index: number): Observab
       */
 
       result = null;
-      case1Entries.info(container.reference_id);
+      case1EntriesLogger.info(container.reference_id);
     } else {
       result = 'case 2';
-      case2Entries.info(container.reference_id);
+      case2EntriesLogger.info(container.reference_id);
     }
 
     if (result === 'case 1') {
