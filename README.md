@@ -11,6 +11,15 @@ Already comes pre-packaged with:
 
 Written in `typescript`
 
-## Samples
+## Sample
 
-Samples can be found in the `samples` folder.
+Some of the data processing that I do can be found in the `src/programs` folder.
+
+I'll gitignore them later, but I'll keep them here for now. Later I'll move them
+to an `examples` folder.
+
+## Project Structure
+
+* `src/programs` - All programs are kept here.
+* `logs` - All log files (using Winston) will be kept in this directory.
+* `data-source` Data files (csvs, etc.) should be kept here.
